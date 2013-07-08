@@ -57,21 +57,21 @@ S = {-4, -2, 1, 2, 5, 0}
 zero_sum_list = [(i,j,k) for i in S for j in S for k in S if sum([i,j,k]) == 0]
 
 ## Task 15
-exclude_zero_list = [ ... ]
+exclude_zero_list = [(i,j,k) for i in S for j in S for k in S if (sum([i,j,k]) == 0 and {i,j,k}!={0,0,0})]
 
 ## Task 16
-first_of_tuples_list = ...
+first_of_tuples_list = [(i,j,k) for i in S for j in S for k in S if (sum([i,j,k]) == 0 and {i,j,k}!={0,0,0})][0]
 
 ## Task 17
-L1 = [...] # <-- want len(L1) != len(list(set(L1)))
-L2 = [...] # <-- same len(L2) == len(list(set(L2))) but L2 != list(set(L2))
+L1 = [0,1,0] # <-- want len(L1) != len(list(set(L1)))
+L2 = [3,'a',1] # <-- same len(L2) == len(list(set(L2))) but L2 != list(set(L2))
 
 ## Task 18
-odd_num_list_range = {...}
+odd_num_list_range = {x for x in range(1,100,2)}
 
 ## Task 19
 L = ['A','B','C','D','E']
-range_and_zip = ...
+range_and_zip = zip(range(5),L)
 
 ## Task 20
 list_sum_zip = [...]
