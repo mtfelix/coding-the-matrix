@@ -71,10 +71,10 @@ odd_num_list_range = {x for x in range(1,100,2)}
 
 ## Task 19
 L = ['A','B','C','D','E']
-range_and_zip = zip(range(5),L)
+range_and_zip = list(zip(range(5),L))
 
 ## Task 20
-list_sum_zip = [...]
+list_sum_zip = [x+y for (x, y) in zip([10,25,40],[1,15,20])]
 
 ## Task 21
 dlist = [{'James':'Sean', 'director':'Terence'}, {'James':'Roger', 'director':'Lewis'}, {'James':'Pierce', 'director':'Roger'}]
