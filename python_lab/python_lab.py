@@ -33,7 +33,7 @@ Y2 = { 4, 6, 9 }
 ## Task 9
 base = 10
 digits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-three_digits_set = {...}
+three_digits_set = {x+y*(base**1)+z*(base**2) for x in digits for y in digits for z in digits}
 
 ## Task 10
 S = {1, 2, 3, 4}
