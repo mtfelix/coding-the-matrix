@@ -1,2 +1,4 @@
-list_sum_zip = [x*y for (x, y) in zip([10,25,40],[1,15,20])]
-print (list_sum_zip)
+d = {0:1000.0, 1:1200.50, 2:990}
+names = ['Larry', 'Curly', 'Moe']
+listdict2dict = {names[k]:v for (k,v) in d.items() }
+print (listdict2dict)
