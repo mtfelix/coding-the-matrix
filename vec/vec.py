@@ -1,12 +1,15 @@
 def getitem(v,d):
     "Returns the value of entry d in v"
     assert d in v.D
-    pass
+    if d in v.f.keys():
+        return v.f[d]
+    else:
+        return 0
 
 def setitem(v,d,val):
     "Set the element of v with label d to be val"
     assert d in v.D
-    pass
+    v.f[d] = val
 
 def equal(u,v):
     "Returns true iff u is equal to v"
