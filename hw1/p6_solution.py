@@ -1,0 +1,1 @@
+import mathdef vec_dot_product(v,u):    t = 0;    for i in range(len(v)):        t = t + v[i]*u[i]    return tu = [-math.sqrt(2)/2,math.sqrt(2)/2]v = [math.sqrt(2)/2,-math.sqrt(2)/2]print(vec_dot_product(u,v))
