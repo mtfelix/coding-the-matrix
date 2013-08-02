@@ -2,7 +2,8 @@
 # Please fill out this stencil and submit using the provided submission script.
 
 from vec import Vec
-
+from vec import *
+from GF2 import one
 
 
 ## Problem 1
@@ -16,7 +17,11 @@ def vec_select(veclist, k):
     >>> vec_select([v1, v2, v3, v4], 'a') == [Vec(D,{'b': 1}), Vec(D,{'b': 2})]
     True
     '''
-    pass
+    vec_list = list()
+    for vec in veclist:
+        if 0 == getitem(vec,k):
+            vec_list.append(vec)
+    return vec_list
 
 def vec_sum(veclist, D): 
     '''
@@ -28,7 +33,10 @@ def vec_sum(veclist, D):
     >>> vec_sum([v1, v2, v3, v4], D) == Vec(D, {'b': 13, 'a': 11})
     True
     '''
-    pass
+    sum_vec = Vec(D,{})
+    for v in veclist:
+        sum_vec = add(sum_vec, v)
+    return sum_vec
 
 def vec_select_sum(veclist, k, D): 
     '''
@@ -40,7 +48,8 @@ def vec_select_sum(veclist, k, D):
     >>> vec_select_sum([v1, v2, v3, v4], 'a', D) == Vec(D, {'b': 3})
     True
     '''
-    pass
+    return vec_sum(vec_select(veclist,k), D)
+    
 
 
 
@@ -52,7 +61,8 @@ def scale_vecs(vecdict):
     >>> scale_vecs({3: v1, 5: v2}) == [Vec({1,2,3},{2: 3.0}), Vec({1,2,4},{1: 0.2, 2: 0.4, 4: 1.6})]
     True
     '''
-    pass
+    return [ scalar_mul(v,1/k) for (k,v) in vecdict.items()]
+    
 
 
 

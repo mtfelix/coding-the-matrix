@@ -112,10 +112,24 @@ def find_average_similarity(sen, sen_set, voting_dict):
         >>> find_average_similarity('Klein', {'Fox-Epstein','Ravella'}, vd)
         -0.5
     """
-    return ...
+    score_list = [policy_compare(sen,another_guy,voting_dict) for another_guy in sen_set]
+    if 0 < len(score_list):
+        return sum(score_list) / len(score_list)
+    else:
+        return 0
 
-most_average_Democrat = ... # give the last name (or code that computes the last name)
+set_of_Democrat = set()
+set_of_all_sen = set()
+for s in voting_data:
+    s = s.strip()
+    items = s.split(' ')
+    set_of_all_sen.add(items[0])
+    if items[1] == 'D':
+        set_of_Democrat.add(items[0])
 
+score_sen_map = {find_average_similarity(sen,set_of_Democrat, create_voting_dict()):sen for sen in set_of_all_sen}
+#-->Biden
+most_average_Democrat = score_sen_map[max(score_sen_map.keys())] # give the last name (or code that computes the last name)
 
 # Task 7
 
@@ -129,10 +143,25 @@ def find_average_record(sen_set, voting_dict):
         >>> find_average_record({'Fox-Epstein','Ravella'}, voting_dict)
         [-0.5, -0.5, 0.0]
     """
-    return ...
+    assert len(sen_set) > 0
+    rlt_vec = list()
+    for sen in sen_set:
+        rlt_vec = [0]*len(voting_dict[sen])
+        break
+    for sen in sen_set:
+        for i in range(0, len(voting_dict[sen])):
+            rlt_vec[i] += voting_dict[sen][i]/len(sen_set)
+    return rlt_vec
 
-average_Democrat_record = ... # (give the vector)
+average_Democrat_record = find_average_record(set_of_Democrat, create_voting_dict()) # (give the vector)
 
+new_vd = create_voting_dict()
+new_vd['ALLDemocrat'] = average_Democrat_record
+most_average_Democrat2 = most_similar('ALLDemocrat', new_vd)
+# yea, Biden again
+#print(most_average_Democrat2) 
+
+    
 
 # Task 8
 
@@ -147,5 +176,6 @@ def bitter_rivals(voting_dict):
         >>> bitter_rivals(voting_dict)
         ('Fox-Epstein', 'Ravella')
     """
-    return (..., ...)
+    score_person_pair_dic = {policy_compare(p1,p2,voting_dict):(p1,p2) for p1 in voting_dict.keys() for p2 in voting_dict.keys()}
+    return score_person_pair_dic[min(score_person_pair_dic.keys())]
 
