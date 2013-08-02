@@ -27,15 +27,15 @@ def add(u,v):
 def dot(u,v):
     "Returns the dot product of the two vectors"
     assert u.D == v.D
-    pass
+    return sum([getitem(v,d)*getitem(u,d) for d in u.D])
 
 def scalar_mul(v, alpha):
     "Returns the scalar-vector product alpha times v"
-    pass
+    return Vec(v.D, {i:alpha*getitem(v,i) for i in v.D})
 
 def neg(v):
     "Returns the negation of a vector"
-    pass
+    return Vec(v.D, {i:-1*getitem(v,i) for i in v.D})
 
 ##### NO NEED TO MODIFY BELOW HERE #####
 class Vec:
