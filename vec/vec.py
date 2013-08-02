@@ -14,12 +14,15 @@ def setitem(v,d,val):
 def equal(u,v):
     "Returns true iff u is equal to v"
     assert u.D == v.D
-    pass
+    for x in u.D:
+        if getitem(u, x) != getitem(v, x):
+            return False
+    return True
 
 def add(u,v):
     "Returns the sum of the two vectors"
     assert u.D == v.D
-    pass
+    return Vec(u.D, { i:v[i]+u[i] for i in u.f.keys() | v.f.keys() })
 
 def dot(u,v):
     "Returns the dot product of the two vectors"
