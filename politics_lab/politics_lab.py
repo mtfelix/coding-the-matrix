@@ -28,7 +28,12 @@ def create_voting_dict():
 
     The lists for each senator should preserve the order listed in voting data. 
     """
-    return dict() 
+    voting_dic = {}
+    for s in voting_data:
+        s = s.strip()
+        items = s.split(' ')
+        voting_dic[items[0]] = [int(v) for v in items[3:]]
+    return voting_dic
     
 
 ## Task 2
@@ -44,7 +49,9 @@ def policy_compare(sen_a, sen_b, voting_dict):
         >>> policy_compare('Fox-Epstein','Ravella', voting_dict)
         -2
     """
-    return 0.0
+    assert len(voting_dict[sen_a]) == len(voting_dict[sen_b])
+    return sum([voting_dict[sen_a][k]*voting_dict[sen_b][k] for k in range(0,len(voting_dict[sen_a]))])
+    
 
 
 ## Task 3
@@ -63,8 +70,9 @@ def most_similar(sen, voting_dict):
 
     Note that you can (and are encouraged to) re-use you policy_compare procedure.
     """
-    
-    return ""
+    score_map = {policy_compare(sen,another_guy,voting_dict):another_guy for another_guy in voting_dict.keys() if another_guy != sen}
+    return score_map[max(score_map.keys())]
+
     
 
 ## Task 4
@@ -80,14 +88,16 @@ def least_similar(sen, voting_dict):
         >>> least_similar('Klein', vd)
         'Ravella'
     """
+    score_map = {policy_compare(sen,another_guy,voting_dict):another_guy for another_guy in voting_dict.keys() if another_guy != sen}
+    return score_map[min(score_map.keys())]
     return ""
     
     
 
 ## Task 5
 
-most_like_chafee    = ''
-least_like_santorum = '' 
+most_like_chafee    = most_similar('Chafee',create_voting_dict())
+least_like_santorum = least_similar('Santorum',create_voting_dict()) 
 
 
 
