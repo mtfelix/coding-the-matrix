@@ -4,6 +4,7 @@
 from vec import Vec
 from vec import *
 from GF2 import one
+from itertools import *
 
 
 ## Problem 1
@@ -66,6 +67,17 @@ def scale_vecs(vecdict):
 
 
 
+def linear_comb(vec_list, alpha_list):
+    '''
+    '''
+    assert len(vec_list) == len(alpha_list)
+    if len(vec_list) == 0:
+        return Vec({},{})
+    vec = Vec(vec_list[0].D,{})
+    for i in range(0, len(vec_list)):
+        vec = add(vec, scalar_mul(vec_list[i], alpha_list[i]))
+    return vec
+
 ## Problem 3
 def GF2_span(D, L):
     '''
@@ -83,24 +95,28 @@ def GF2_span(D, L):
     >>> Vec(D, {x:one for x in D}) in GF2_span(D, L)
     True
     '''
-    pass
-
-
+    # 
+    A = [0,1]
+    vec_set = list()
+    for l in product(A,repeat=len(L)):
+        vec_set.append(linear_comb(L, l))
+    
+    return vec_set
 
 ## Problem 4
 # Answer with a boolean, please.
 
-is_it_a_vector_space_1 = ...
-is_it_a_vector_space_2 = ...
+is_it_a_vector_space_1 = True
+is_it_a_vector_space_2 = False
 
 
 
 ## Problem 5
-is_it_a_vector_space_3 = ...
-is_it_a_vector_space_4 = ...
+is_it_a_vector_space_3 = True
+is_it_a_vector_space_4 = False
 
 
 ## Problem 6
 
-is_it_a_vector_space_5 = ...
-is_it_a_vector_space_6 = ...
+is_it_a_vector_space_5 = True
+is_it_a_vector_space_6 = False
