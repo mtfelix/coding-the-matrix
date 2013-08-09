@@ -36,13 +36,18 @@ def transpose(M):
 def vector_matrix_mul(v, M):
     "Returns the product of vector v and matrix M"
     assert M.D[0] == v.D
-    pass
+    result_vec = Vec(M.D[1], {})
+    for (i,j) in M.f.keys():
+        result_vec[i] = result_vec[i] + M[j,i] * v[j]
+    return result_vec
 
 def matrix_vector_mul(M, v):
     "Returns the product of matrix M and vector v"
     assert M.D[1] == v.D
-    pass
-
+    result_vec = Vec(M.D[0],{})
+    for (i,j) in M.f.keys():
+        result_vec[i] = result_vec[i] + M[i,j] * v[j]
+    return result_vec
 def matrix_matrix_mul(A, B):
     "Returns the product of A and B"
     assert A.D[1] == B.D[0]

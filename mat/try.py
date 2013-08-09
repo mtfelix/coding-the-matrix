@@ -2,15 +2,15 @@ from mat import Mat
 from vec import Vec
 from GF2 import one
 
-#No operations should mutate the input matrices, except setitem.
-Mat(({'a','b'}, {0,1}), {('a',1):0}) == Mat(({'a','b'}, {0,1}), {('b',1):0})
+v1 = Vec({1, 2, 3}, {1: 1, 2: 8})
+M1 = Mat(({1, 2, 3}, {1, 2, 3}), {(1, 2): 2, (2, 1):-1, (3, 1): 1, (3, 3): 7})
+print(v1*M1 == Vec({1, 2, 3},{1: -8, 2: 2, 3: 0}))
 #True
-A = Mat(({'a','b'}, {0,1}), {('a',1):2, ('b',0):1})
-B = Mat(({'a','b'}, {0,1}), {('a',1):2, ('b',0):1, ('b',1):0})
-C = Mat(({'a','b'}, {0,1}), {('a',1):2, ('b',0):1, ('b',1):5}) 
-print(A == C)
+print(v1 == Vec({1, 2, 3}, {1: 1, 2: 8}))
 #True
-#>>> A == C
-#False
-#>>> A == Mat(({'a','b'}, {0,1}), {('a',1):2, ('b',0):1})
+print(M1 == Mat(({1, 2, 3}, {1, 2, 3}), {(1, 2): 2, (2, 1):-1, (3, 1): 1, (3, 3): 7}))
+#True
+v2 = Vec({'a','b'}, {})
+M2 = Mat(({'a','b'}, {0, 2, 4, 6, 7}), {})
+print(v2*M2 == Vec({0, 2, 4, 6, 7},{}))
 #True
