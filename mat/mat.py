@@ -1,4 +1,5 @@
 from vec import Vec
+#from matutil import rowdict2mat, mat2rowdict
 
 def getitem(M, k):
     "Returns the value of entry k in M.  The value of k should be a pair."
@@ -51,7 +52,14 @@ def matrix_vector_mul(M, v):
 def matrix_matrix_mul(A, B):
     "Returns the product of A and B"
     assert A.D[1] == B.D[0]
-    pass
+    
+    AB = Mat((A.D[0],B.D[1]), {})
+    for r in A.D[0]:
+        for c in B.D[1]:
+            for k in A.D[1]:
+                AB[r,c] =  AB[r,c] + A[r,k] * B[k,c]
+    return AB
+
 
 ################################################################################
 
