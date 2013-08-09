@@ -8,4 +8,6 @@ from hw3 import *
 
 A = Mat(({0, 1}, {'a', 'b', 'c'}), {(0, 'a'): 1, (0, 'b'): 2, (0, 'c'): 3, (1, 'a'): 4, (1, 'b'): 5})
 B = Mat(({'a', 'b', 'c'}, {'x', 'y'}), {('a', 'x'): 1, ('b', 'y'): 1, ('c', 'x'): 1})
-print(vM_mat_mat_mult(A,B))
+print(A)
+print(B)
+print(dot_prod_mat_mat_mult(A,B))

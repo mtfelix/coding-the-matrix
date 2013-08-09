@@ -183,9 +183,11 @@ def dot_product_vec_mat_mult(v, M):
 ## Problem 15
 def Mv_mat_mat_mult(A, B):
     assert A.D[1] == B.D[0]
-    pass
-
-
+    col_dict = mat2coldict(B)
+    AB = dict()
+    for c in col_dict.keys():
+        AB[c] = A * col_dict[c]
+    return coldict2mat(AB)
 
 ## Problem 16
 def vM_mat_mat_mult(A, B):
@@ -193,14 +195,6 @@ def vM_mat_mat_mult(A, B):
     row_dict = mat2rowdict(A)
     AB = dict()
     for r in row_dict.keys():
-        print (row_dict)
-        print (";;;;;;;;;;;;;;;;;;;;;")
-        
-        print (row_dict[r])
-        print ("**************")
-        print (B)
-        print ("%%%%%%r is%%%%%%%%")
-        print (r)
         AB[r] = row_dict[r] * B
     return rowdict2mat(AB)
 
@@ -208,27 +202,31 @@ def vM_mat_mat_mult(A, B):
 ## Problem 17
 def dot_prod_mat_mat_mult(A, B):
     assert A.D[1] == B.D[0]
-    pass
-
+    AB = Mat((A.D[0],B.D[1]), {})
+    A_row_dict = mat2rowdict(A)
+    B_col_dict = mat2coldict(B)
+    for (r,c) in [(x,y) for x in AB.D[0] for y in AB.D[1]]:
+        AB[r,c] = A_row_dict[r] * B_col_dict[c]
+    return AB
 
 
 ## Problem 18
-solving_systems_x1 = ...
-solving_systems_x2 = ...
-solving_systems_y1 = ...
-solving_systems_y2 = ...
-solving_systems_m = Mat(({0, 1}, {0, 1}), {...})
-solving_systems_a = Mat(({0, 1}, {0, 1}), {...})
-solving_systems_a_times_m = Mat(({0, 1}, {0, 1}), {...})
-solving_systems_m_times_a = Mat(({0, 1}, {0, 1}), {...})
+solving_systems_x1 = -1/5
+solving_systems_x2 = 2/5
+solving_systems_y1 = 4/5
+solving_systems_y2 = -3/5
+solving_systems_m = Mat(({0, 1}, {0, 1}), {(0,0):-1/5, (0,1):4/5, (1,0):2/5, (1,1):-3/5})
+solving_systems_a = Mat(({0, 1}, {0, 1}), {(0,0):3, (0,1):4, (1,0):2, (1,1):1})
+solving_systems_a_times_m = Mat(({0, 1}, {0, 1}), {(0,0):1,(1,1):1})
+solving_systems_m_times_a = Mat(({0, 1}, {0, 1}), {(0,0):1,(1,1):1})
 
 
 
 ## Problem 19
 # Please write your solutions as booleans (True or False)
 
-are_inverses1 = ...
-are_inverses2 = ...
-are_inverses3 = ...
-are_inverses4 = ...
+are_inverses1 = True
+are_inverses2 = True
+are_inverses3 = False
+are_inverses4 = False
 
