@@ -149,30 +149,36 @@ column_row_vector_multiplication5 = Vec({0, 1, 2}, {0:-3,1:1,2:9})
 def lin_comb_mat_vec_mult(M, v):
     assert(M.D[1] == v.D)
     col_dict = mat2coldict(M)
-    result_vec = Vec(v.D,{})
+    result_vec = Vec(M.D[0],{})
     for c in v.D:
-        result_vec = add(result_vec,scalar_mul(col_dict[c], getitem(v, c)))
+        result_vec = result_vec + v[c] * col_dict[c]
     return result_vec
 ## Problem 12
 def lin_comb_vec_mat_mult(v, M):
     assert(v.D == M.D[0])
-    pass
-
-
+    result_vec = Vec(M.D[1], {})
+    row_dict = mat2rowdict(M)
+    for r in M.D[0]:
+        result_vec = result_vec + v[r] * row_dict[r]
+    return result_vec
 
 ## Problem 13
 def dot_product_mat_vec_mult(M, v):
     assert(M.D[1] == v.D)
-    pass
-
-
+    result_vec = Vec(M.D[0],{})
+    row_dict = mat2rowdict(M)
+    for r in M.D[0]:
+        result_vec[r] = row_dict[r] * v
+    return result_vec
 
 ## Problem 14
 def dot_product_vec_mat_mult(v, M):
     assert(v.D == M.D[0])
-    pass
-
-
+    result_vec = Vec(M.D[1],{})
+    col_dict = mat2coldict(M)
+    for c in M.D[1]:
+        result_vec[c] = col_dict[c] * v
+    return result_vec
 
 ## Problem 15
 def Mv_mat_mat_mult(A, B):
@@ -184,8 +190,16 @@ def Mv_mat_mat_mult(A, B):
 ## Problem 16
 def vM_mat_mat_mult(A, B):
     assert A.D[1] == B.D[0]
-    pass
-
+    row_dict = mat2rowdict(A)
+    AB = dict()
+    for r in row_dict.keys():
+        print (r)
+        print (row_dict[r])
+        print ("**************")
+        print (B)
+        print ("%%%%%%%%%%%%%%")
+        AB[r] = row_dict[r] * B
+    return rowdict2mat(AB)
 
 
 ## Problem 17
