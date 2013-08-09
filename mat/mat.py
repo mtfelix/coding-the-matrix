@@ -3,30 +3,35 @@ from vec import Vec
 def getitem(M, k):
     "Returns the value of entry k in M.  The value of k should be a pair."
     assert k[0] in M.D[0] and k[1] in M.D[1]
-    pass
-
+    if k in M.f:
+        return M.f[k]
+    else:
+        return 0
 def setitem(M, k, val):
     "Sets the element of v with label k to be val.  The value of k should be a pair"
     assert k[0] in M.D[0] and k[1] in M.D[1]
-    pass
+    M.f[k] = val
 
 def add(A, B):
     "Returns the sum of A and B"
     assert A.D == B.D
-    pass
+    return Mat(A.D, { k:getitem(A,k)+getitem(B,k) for k in A.f.keys() | B.f.keys() })
 
 def scalar_mul(M, alpha):
     "Returns the product of scalar alpha with M" 
-    pass
+    return Mat(M.D, {k:alpha*getitem(M,k) for k in M.f})
 
 def equal(A, B):
     "Returns true iff A is equal to B"
     assert A.D == B.D
-    pass
+    for k in A.f.keys() | B.f.keys():
+        if A[k] != B[k]:
+            return False
+    return True
 
 def transpose(M):
     "Returns the transpose of M"
-    pass
+    return Mat((M.D[1], M.D[0]), {(q,p):v for (p,q),v in M.f.items()})
 
 def vector_matrix_mul(v, M):
     "Returns the product of vector v and matrix M"

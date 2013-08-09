@@ -2,6 +2,7 @@
 # Please fill out this stencil and submit using the provided submission script.
 
 from mat import Mat
+from matutil import *
 from vec import Vec
 
 
@@ -147,10 +148,11 @@ column_row_vector_multiplication5 = Vec({0, 1, 2}, {0:-3,1:1,2:9})
 ## Problem 11
 def lin_comb_mat_vec_mult(M, v):
     assert(M.D[1] == v.D)
-    pass
-
-
-
+    col_dict = mat2coldict(M)
+    result_vec = Vec(v.D,{})
+    for c in v.D:
+        result_vec = add(result_vec,scalar_mul(col_dict[c], getitem(v, c)))
+    return result_vec
 ## Problem 12
 def lin_comb_vec_mat_mult(v, M):
     assert(v.D == M.D[0])
