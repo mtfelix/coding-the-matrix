@@ -193,11 +193,14 @@ def vM_mat_mat_mult(A, B):
     row_dict = mat2rowdict(A)
     AB = dict()
     for r in row_dict.keys():
-        print (r)
+        print (row_dict)
+        print (";;;;;;;;;;;;;;;;;;;;;")
+        
         print (row_dict[r])
         print ("**************")
         print (B)
-        print ("%%%%%%%%%%%%%%")
+        print ("%%%%%%r is%%%%%%%%")
+        print (r)
         AB[r] = row_dict[r] * B
     return rowdict2mat(AB)
 
