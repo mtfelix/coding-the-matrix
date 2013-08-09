@@ -39,7 +39,7 @@ def vector_matrix_mul(v, M):
     assert M.D[0] == v.D
     result_vec = Vec(M.D[1], {})
     for (i,j) in M.f.keys():
-        result_vec[i] = result_vec[i] + M[j,i] * v[j]
+        result_vec[j] = result_vec[j] + M[i,j] * v[i]
     return result_vec
 
 def matrix_vector_mul(M, v):
