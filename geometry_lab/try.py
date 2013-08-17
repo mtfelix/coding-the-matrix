@@ -5,4 +5,6 @@ import math
 #mat2display(pmat_cmat[0], pmat_cmat[1])
 
 #print(translation(2,3))
-print(rotation(math.pi/6))
+#print(rotation(math.pi/6))
+
+print(grayscale())
