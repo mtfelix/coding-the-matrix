@@ -1,4 +1,6 @@
 from mat import Mat
+from vec import *
+from matutil import rowdict2mat
 import math
 
 ## Task 1
@@ -59,7 +61,7 @@ def reflect_y():
     Input:  None.
     Output:  3x3 Y-reflection matrix.
     '''
-    pass
+    return scale(-1, 1)
 
 ## Task 7
 def reflect_x():
@@ -67,7 +69,7 @@ def reflect_x():
     Inpute:  None.
     Output:  3x3 X-reflection matrix.
     '''
-    pass
+    return scale(1, -1)
     
 ## Task 8    
 def scale_color(scale_r,scale_g,scale_b):
@@ -75,7 +77,7 @@ def scale_color(scale_r,scale_g,scale_b):
     Input:  3 scaling parameters for the colors of the image.
     Output:  Corresponding 3x3 color scaling matrix.
     '''
-    pass
+    return Mat(({'r','g','b'},{'r','g','b'}),{('r','r'):scale_r,('g','g'):scale_g,('b','b'):scale_b})
 
 ## Task 9
 def grayscale():
@@ -83,7 +85,8 @@ def grayscale():
     Input: None
     Output: 3x3 greyscale matrix.
     '''
-    pass   
+    return rowdict2mat({color:Vec({'r','g','b'},{'r':77/256,'g':151/256,'b':28/256}) for color in {'r','g','b'}})
+
 
 ## Task 10
 def reflect_about(p1,p2):
@@ -91,6 +94,11 @@ def reflect_about(p1,p2):
     Input: 2 points that define a line to reflect about.
     Output:  Corresponding 3x3 reflect about matrix.
     '''
-    pass
-
-
+    #step1: translate by -P2   (could use P1 instead)
+    #step2: rotate by -theta    (theta is the angle between the x-axis and the line through the two given points)
+    #step3: reflect through x-axis
+    #step4: rotate by theta
+    #step5: translate by P2   (could use P1 instead)
+    x1, y1, x2, y2 = p1[0], p1[1], p2[0], p2[1]
+    theta = math.atan2(y2 - y1, x2 - x1)
+    return translation(x2,y2)*rotation(theta)*reflect_x()*rotation(-theta)*translation(-x2,-y2)
