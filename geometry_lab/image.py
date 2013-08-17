@@ -222,4 +222,5 @@ def create_temp(suffix='', prefix='tmp', dir=None):
 
 # Register a file to be removed at exit
 def remove_at_exit(path):
-    atexit.register(os.remove, path)
+    pass
+    #atexit.register(os.remove, path)
