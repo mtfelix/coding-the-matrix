@@ -109,7 +109,8 @@ def mat2display(pts, colors, row_labels = ('x', 'y', 'u'),
         xmax = max(xmax, 0)
 
 
-    hpath = image.create_temp('.html')
+    #hpath = image.create_temp('.html')
+    hpath = "d:/c.html"
     with open(hpath, 'w') as h:
         h.writelines(
             ['<!DOCTYPE html>\n',
