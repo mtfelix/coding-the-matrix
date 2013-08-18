@@ -262,11 +262,18 @@ def superset_basis(S, L):
         >>> a1 = Vec({'a','b','c','d'}, {'b':1})
         >>> a2 = Vec({'a','b','c','d'}, {'c':1})
         >>> a3 = Vec({'a','b','c','d'}, {'a':1,'c':3})
-        >>> superset_basis([a0, a3], [a0, a1, a2]) == [Vec({'a', 'c', 'b', 'd'},{'a': 1}), Vec({'a', 'c', 'b', 'd'},{'b':1}),Vec({'a', 'c', 'b', 'd'},{'c': 1})]
+        >>> superset_basis([a0, a3], [a0, a1, a2]) ==  [Vec({'d', 'b', 'c', 'a'},{'a': 1}), Vec({'d', 'b', 'c', 'a'},{'c': 3, 'a': 1}), Vec({'d', 'b', 'c', 'a'},{'b': 1})]
         True
     '''
-    pass
-
+    # step1: initialize with S
+    super_basis_list = S
+    
+    # step2: add the vec from L by grow style
+    for i in range(len(L)):
+        temp = super_basis_list+[L[i]]
+        if (is_independent(temp) == True):
+            super_basis_list.append(L[i])
+    return super_basis_list
 
 
 ## Problem 18
@@ -284,5 +291,11 @@ def exchange(S, A, z):
         >>> exchange(S, A, z) == Vec({0, 1, 2, 3},{0: 0, 1: 0, 2: 1, 3: 0})
         True
     '''
-    pass
+    n_S = list()      
+    for v in S:        
+       n_S.append(v)    
+    n_S.append(z)
 
+    for i in range(len(n_S)):            
+         if is_superfluous(n_S, i) == True and n_S[i] not in A and n_S[i] != z:          
+              return n_S[i]

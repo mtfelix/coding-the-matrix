@@ -25,14 +25,17 @@ for i1 in range(0,2):
         for i3 in range(0,2):
             for i4 in range(0,2):
                 if i1*vec1+i2*vec2+i3*vec3+i4*vec4 == avec:
-                    print ("avec:")
-                    print (i1,i2,i3,i4)
+                    pass
+                    #print ("avec:")
+                    #print (i1,i2,i3,i4)
                 if i1*vec1+i2*vec2+i3*vec3+i4*vec4 == bvec:
-                    print ("bvec:")
-                    print (i1,i2,i3,i4)
+                    pass
+                    #print ("bvec:")
+                    #print (i1,i2,i3,i4)
                 if i1*vec1+i2*vec2+i3*vec3+i4*vec4 == cvec:
-                    print ("cvec:")
-                    print (i1,i2,i3,i4)
+                    pass
+                    #print ("cvec:")
+                    #print (i1,i2,i3,i4)
 
 
 #problem 9
@@ -74,11 +77,20 @@ a1 = Vec({'a','b','c','d'}, {'b':1})
 a2 = Vec({'a','b','c','d'}, {'c':1})
 a3 = Vec({'a','b','c','d'}, {'a':1,'c':3})
 L = [a0,a1,a2,a3]
-print(is_superfluous(L, 3))
+#print(is_superfluous(L, 3))
 #True
-print(is_superfluous([a0,a1,a2,a3], 3))
+#print(is_superfluous([a0,a1,a2,a3], 3))
 #True
-print(is_superfluous([a0,a1,a2,a3], 0))
+#print(is_superfluous([a0,a1,a2,a3], 0))
 #True
-print(is_superfluous([a0], 0))
+#print(is_superfluous([a0], 0))
 #False
+
+#problem 17
+a0 = Vec({'a','b','c','d'}, {'a':1})
+a1 = Vec({'a','b','c','d'}, {'b':1})
+a2 = Vec({'a','b','c','d'}, {'c':1})
+a3 = Vec({'a','b','c','d'}, {'a':1,'c':3})
+#superset_basis([a0, a3], [a0, a1, a2]) ==  [Vec({'d', 'b', 'c', 'a'},{'a': 1}), Vec({'d', 'b', 'c', 'a'},{'c': 3, 'a': 1}), Vec({'d', 'b', 'c', 'a'},{'b': 1})]
+#True
+print(superset_basis([a0, a3], [a0, a1, a2]))
