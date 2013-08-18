@@ -240,7 +240,10 @@ def is_independent(L):
     >>> is_independent(vlist[5:])
     True
     '''
-    pass
+    for i in range(len(L)):
+        if True == is_superfluous(L, i):
+            return False
+    return True
 
 
 
