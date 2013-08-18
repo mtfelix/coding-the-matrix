@@ -153,7 +153,7 @@ def rep2vec(u, veclist):
         >>> rep2vec(Vec({0,1,2}, {0:2, 1:4, 2:6}), [a0,a1,a2]) == Vec({'a', 'c', 'b', 'd'},{'a': 2, 'c': 6, 'b': 4, 'd': 0})
         True
     '''
-    pass
+    return coldict2mat(veclist)*u
 
 
 
@@ -173,7 +173,7 @@ def vec2rep(veclist, v):
         >>> vec2rep([a0,a1,a2], Vec({'a','b','c','d'}, {'a':3, 'c':-2})) == Vec({0, 1, 2},{0: 3.0, 1: 0.0, 2: -2.0})
         True
     '''
-    pass
+    return solve(coldict2mat(veclist),v)
 
 
 
@@ -202,7 +202,18 @@ def is_superfluous(L, i):
         >>> is_superfluous([a0,a1,a2,a3], 1)
         False
     '''
-    pass
+    zero_like = 1e-14
+    
+    if len(L) <= 1:
+        return False
+    A = coldict2mat(L[:i]+L[i+1:])
+    b = L[i]
+    u = solve(A,b)
+    residual = b - A*u
+    if(residual*residual) < zero_like:
+        return True
+    else:
+        return False
 
 
 

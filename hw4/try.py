@@ -5,6 +5,8 @@ from matutil import coldict2mat
 from solver import solve
 from vec import Vec
 
+from hw4 import *
+
 vec1 = Vec({0,1,2,3},{1:one,3:one})
 vec2 = Vec({0,1,2,3},{2:one})
 vec3 = Vec({0,1,2,3},{0:one,3:one})
@@ -62,5 +64,21 @@ zerovec_c = Vec({0,1,2,3,4},{})
 for Alpha in product(A,repeat=len(veclist_c)):
     if sum(Alpha) > 0:
         if sum([Alpha[i]*veclist_c[i] for i in range(len(veclist_c))]) == zerovec_c:
-            print(Alpha)
-            exit()
+            #print(Alpha)
+            #exit()
+            pass
+
+# problem 16
+a0 = Vec({'a','b','c','d'}, {'a':1})
+a1 = Vec({'a','b','c','d'}, {'b':1})
+a2 = Vec({'a','b','c','d'}, {'c':1})
+a3 = Vec({'a','b','c','d'}, {'a':1,'c':3})
+L = [a0,a1,a2,a3]
+print(is_superfluous(L, 3))
+#True
+print(is_superfluous([a0,a1,a2,a3], 3))
+#True
+print(is_superfluous([a0,a1,a2,a3], 0))
+#True
+print(is_superfluous([a0], 0))
+#False
