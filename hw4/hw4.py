@@ -83,29 +83,29 @@ linear_dep_R_3 = [1,1,1,1,1]
 # Assign sum_to to the vector that you are expressing as a linear combination
 # of the other two.  Write the name of the vector as a STRING.  i.e. 'u' or 'w'
 
-u = ...
-v = ...
-w = ...
-sum_to = ...
+u = -1
+v = 1
+w = 0
+sum_to = 'w'
 
 
 
 ## Problem 8
 # Please use the Vec class to represent your vectors
 
-indep_vec_1 = Vec({...}, {...})
-indep_vec_2 = Vec({...}, {...})
-indep_vec_3 = Vec({...}, {...})
-indep_vec_4 = Vec({...}, {...})
+indep_vec_1 = Vec({0,1,2,3}, {0:1,1:1,2:1})
+indep_vec_2 = Vec({0,1,2,3}, {0:1})
+indep_vec_3 = Vec({0,1,2,3}, {1:1})
+indep_vec_4 = Vec({0,1,2,3}, {2:1})
 
 
 
 ## Problem 9
 # Please give your solution as a list of coefficients of the linear combination
 
-zero_comb_1 = [...]
-zero_comb_2 = [...]
-zero_comb_3 = [...]
+zero_comb_1 = [1,1,0,1]
+zero_comb_2 = [0,1,1,1]
+zero_comb_3 = [1,1,0,0,1]
 
 
 
@@ -113,27 +113,28 @@ zero_comb_3 = [...]
 # Please give your solution as a list of coefficients of the vectors
 # in the set in order (list the coefficient for v_i before v_j if i < j).
 
-sum_to_zero_1 = [...]
-sum_to_zero_2 = [...]
-sum_to_zero_3 = [...]
-sum_to_zero_4 = [...]
+sum_to_zero_1 = [0,1,0,1,1]
+sum_to_zero_2 = [0,1,0,1,1,0,0]
+sum_to_zero_3 = [1,0,1,1,1]
+sum_to_zero_4 = [1,1,1,1,1,0,0]
+
 
 
 
 ## Problem 11
 ## Please express your answer a list of ints, such as [1,0,0,0,0]
 
-exchange_1 = [...]
-exchange_2 = [...]
-exchange_3 = [...]
+exchange_1 = [0,0,1,0,0]
+exchange_2 = [0,0,0,1,0]
+exchange_3 = [0,0,0,0,1]
 
 
 ## Problem 12
 # Please give the name of the vector you want to replace as a string (e.g. 'v1')
 
-replace_1 = ...
-replace_2 = ...
-replace_3 = ...
+replace_1 = 'v3'
+replace_2 = 'v1'
+replace_3 = 'v1'
 
 
 
