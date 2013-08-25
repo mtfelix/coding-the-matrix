@@ -108,7 +108,13 @@ def my_is_independent(L):
     >>> my_is_independent(L[2:5])
     False
     '''
-    pass
+    from independence import rank
+    rank_num = rank(L)
+    if rank_num < len(L):
+        return False
+    else:
+        return True
+    
 
 
 ## Problem 6
@@ -125,10 +131,12 @@ def subset_basis(T):
     >>> subset_basis([a0,a1,a2,a3]) == [Vec({'c', 'b', 'a', 'd'},{'a': 1}), Vec({'c', 'b', 'a', 'd'},{'b': 1}), Vec({'c', 'b', 'a', 'd'},{'c': 1})]
     True
     '''
-    pass
-
-
-
+    from hw4 import is_independent
+    basis = list()
+    for vec in T:
+        if True == is_independent(basis+[vec]):
+            basis.append(vec)
+    return basis
 ## Problem 7
 def my_rank(L): 
     '''
@@ -138,15 +146,16 @@ def my_rank(L):
     >>> my_rank([list2vec(v) for v in [[1,2,3],[4,5,6],[1.1,1.1,1.1]]])
     2
     '''
-    pass
-
+    rank_num = 0
+    rank_num = len(subset_basis(L))
+    return rank_num
 
 ## Problem 8
 # Please give each answer as a boolean
 
-only_share_the_zero_vector_1 = ...
-only_share_the_zero_vector_2 = ...
-only_share_the_zero_vector_3 = ...
+only_share_the_zero_vector_1 = True
+only_share_the_zero_vector_2 = True
+only_share_the_zero_vector_3 = True
 
 
 
@@ -165,9 +174,17 @@ def direct_sum_decompose(U_basis, V_basis, w):
     >>> direct_sum_decompose(U_basis, V_basis, w) == (Vec({0, 1, 2, 3, 4, 5},{0: 2.0, 1: 4.999999999999972, 2: 0.0, 3: 0.0, 4: 1.0, 5: 0.0}), Vec({0, 1, 2, 3, 4, 5},{0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0, 5: 0.0}))
     True
     '''
-    pass
-
-
+    joined_list = U_basis + V_basis
+    u_vec = Vec(U_basis[0].D,{})
+    v_vec = Vec(V_basis[0].D,{})
+    from hw4 import vec2rep
+    rep = vec2rep(joined_list, w)
+    for key in rep.f.keys():
+        if (joined_list[key] in U_basis):
+            u_vec = u_vec + rep.f[key]*joined_list[key]
+        elif (joined_list[key] in V_basis):
+            v_vec = v_vec + rep.f[key]*joined_list[key]
+    return (u_vec,v_vec)
 
 ## Problem 10
 def is_invertible(M): 
