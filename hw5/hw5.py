@@ -196,9 +196,14 @@ def is_invertible(M):
     >>> is_invertible(M)
     True
     '''
-    pass
-
-
+    from matutil import mat2coldict, mat2rowdict
+    row_vec_list = mat2rowdict(M).values()
+    col_vec_list = mat2coldict(M).values()
+    if (my_is_independent(row_vec_list) == True and my_is_independent(col_vec_list) == True):
+        return True
+    else:
+        return False
+    
 ## Problem 11
 def find_matrix_inverse(A):
     '''
@@ -209,9 +214,14 @@ def find_matrix_inverse(A):
     >>> find_matrix_inverse(M) == Mat(({0, 1, 2}, {0, 1, 2}), {(0, 1): one, (2, 0): 0, (0, 0): 0, (2, 2): one, (1, 0): one, (1, 2): 0, (1, 1): 0, (2, 1): 0, (0, 2): 0})
     True
     '''
-    pass
-
-
+    # A * [b1|b2|b3] = I
+    I_col_dict = {i:Vec(A.D[0],{i:one}) for i in A.D[1]}
+    #print (I_basis_list)
+    B_coldict = dict()
+    
+    for key in I_col_dict.keys():
+        B_coldict[key] = solve(A,I_col_dict[key])
+    return coldict2mat(B_coldict)
 
 ## Problem 12
 def find_triangular_matrix_inverse(A): 
@@ -222,4 +232,20 @@ def find_triangular_matrix_inverse(A):
     >>> find_triangular_matrix_inverse(A) == Mat(({0, 1, 2, 3}, {0, 1, 2, 3}), {(0, 1): -0.5, (1, 2): -0.3, (3, 2): 0.0, (0, 0): 1.0, (3, 3): 1.0, (3, 0): 0.0, (3, 1): 0.0, (2, 1): 0.0, (0, 2): -0.05000000000000002, (2, 0): 0.0, (1, 3): -0.87, (2, 3): -0.1, (2, 2): 1.0, (1, 0): 0.0, (0, 3): -3.545, (1, 1): 1.0})
     True
     '''
-    pass
+    I_col_dict = {i:Vec(A.D[0],{i:1}) for i in A.D[1]}
+    #def triangular_solve(rowlist, label_list, b):
+    rowlist = list()
+    label_list = list()
+    from matutil import mat2rowdict
+    
+    rowdict = mat2rowdict(A)
+    for key in rowdict.keys():
+        label_list.append(key)
+        rowlist.append(rowdict[key])
+    
+    B_coldict = dict()
+    from triangular import triangular_solve
+    for key in label_list:
+        B_coldict[key] = triangular_solve(rowlist,label_list,I_col_dict[key])
+    return coldict2mat(B_coldict)
+    
