@@ -1,4 +1,4 @@
-from image_mat_util import *
+#from image_mat_util import *
 
 from mat import Mat
 from vec import Vec
@@ -15,7 +15,7 @@ def move2board(v):
           in whiteboard coordinates of the point p such that the line through the 
           origin and q intersects the whiteboard plane at p.
     '''
-    return Vec({'y1','y2','y3'}, ...)
+    return Vec({'y1','y2','y3'}, {'y1':v.f['y1']/v.f['y3'],'y2':v.f['y2']/v.f['y3'],'y3':v.f['y3']/v.f['y3']})
 
 ## Task 2
 def make_equations(x1, x2, w1, w2): 
@@ -27,8 +27,8 @@ def make_equations(x1, x2, w1, w2):
         - List [u,v] where u*h = 0 and v*h = 0
     '''
     domain = {(a, b) for a in {'y1', 'y2', 'y3'} for b in {'x1', 'x2', 'x3'}}
-    u = Vec(domain, ...)
-    v = Vec(domain, ...)
+    u = Vec(domain, {('y3','x1'):w1*x1, ('y3','x2'):w1*x2, ('y3','x3'):w1,('y1','x1'):-x1, ('y1','x2'):-x2, ('y1','x3'):-1})
+    v = Vec(domain, {('y3','x1'):w2*x1, ('y3','x2'):w2*x2, ('y3','x3'):w2,('y2','x1'):-x1, ('y2','x2'):-x2, ('y2','x3'):-1})
     return [u, v]
 
 
