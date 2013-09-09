@@ -1,18 +1,10 @@
-from itertools import *
-from vec import Vec
-from GF2 import one
+from vec import *
 from hw2 import *
-D = {'a', 'b', 'c'}
-L = [Vec(D, {'a': one, 'c': one}), Vec(D, {'b': one})]
-print(len(GF2_span(D, L)))
-#    4
-print( Vec(D, {}) in GF2_span(D, L))
-#    True
-Vec(D, {'b': one}) in GF2_span(D, L)
-#    True
-Vec(D, {'a':one, 'c':one}) in GF2_span(D, L)
-#    True
-print(Vec(D, {x:one for x in D}) in GF2_span(D, L))
-#   True
-
-print (GF2_span(D,[]))
+D = {'a','b','c'}
+v1 = Vec(D, {'a': 1})
+v2 = Vec(D, {'a': 0, 'b': 1})
+v3 = Vec(D, {        'b': 2})
+v4 = Vec(D, {'a': 10, 'b': 10})
+vec_sum([v1, v2, v3, v4], D) == Vec(D, {'b': 13, 'a': 1})
+#True
+print(vec_sum([v1, v2, v3, v4], D) == Vec(D, {'b': 13, 'a': 12}))
